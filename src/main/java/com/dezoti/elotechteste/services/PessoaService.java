@@ -1,5 +1,7 @@
 package com.dezoti.elotechteste.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,10 @@ public class PessoaService {
 	private PessoaRepository repo;
 		
 	public Pessoa find(Integer id) {
-		Pessoa obj = repo.findOne(id);
-		return obj;
+		return (Pessoa)repo.findOne(id);
+	}
+	
+	public List<Pessoa> list() {
+		return repo.findAll();
 	}
 }
