@@ -1,7 +1,7 @@
 package com.dezoti.elotechteste;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.GregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -29,8 +29,11 @@ public class ElotechtesteApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		//Instanciar os objetos e incluir no Banco para Teste
-		Pessoa pessoa1 = new Pessoa(null, "Jose da Silva", new Long(95019374), new GregorianCalendar(1987, 9, 29).getTime());
-		Pessoa pessoa2 = new Pessoa(null, "Maria de Souza", new Long(105982148), new GregorianCalendar(1970, 0, 05).getTime());
+
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		
+		Pessoa pessoa1 = new Pessoa(null, "Jose da Silva", new Long(95019374), format.parse("29/10/1987"));
+		Pessoa pessoa2 = new Pessoa(null, "Maria de Souza", new Long(105982148), format.parse("05/01/1970"));
 		
 		ContatoPessoa contato1 = new ContatoPessoa(null, "Thiago", pessoa1);
 		ContatoPessoa contato2 = new ContatoPessoa(null, "João", pessoa1);

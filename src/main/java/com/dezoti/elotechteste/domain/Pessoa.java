@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Pessoa implements Serializable {	
@@ -27,10 +27,10 @@ public class Pessoa implements Serializable {
 	
 	private Long rg;
 	
+	@JsonFormat(pattern="dd/MM/yyyy")
 	@Column(name="data_nascimento")
 	private Date dataNascimento;
 	
-	@JsonManagedReference
 	@OneToMany(mappedBy="pessoa")
 	private List<ContatoPessoa> contatos = new ArrayList<>();
 	
@@ -108,14 +108,5 @@ public class Pessoa implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", rg=" + rg + ", dataNascimento=" + dataNascimento + "]";
-	}
-	
-	
-	
-	
+	}		
 }

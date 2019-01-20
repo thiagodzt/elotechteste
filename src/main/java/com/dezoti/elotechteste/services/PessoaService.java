@@ -26,4 +26,19 @@ public class PessoaService {
 	public List<Pessoa> list() {
 		return repo.findAll();
 	}
+	
+	public Pessoa insert(Pessoa obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Pessoa update(Pessoa obj) {
+		find(obj.getId());
+		return repo.save(obj);
+	}
+	
+	public void delete(Integer id) {
+		find(id);
+		repo.delete(id);
+	}
 }
