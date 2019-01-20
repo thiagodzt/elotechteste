@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dezoti.elotechteste.domain.ContatoPessoa;
-import com.dezoti.elotechteste.domain.Pessoa;
 import com.dezoti.elotechteste.repositories.ContatoPessoaRepository;
 import com.dezoti.elotechteste.services.exceptions.ObjectNotFoundException;
 
@@ -41,11 +40,5 @@ public class ContatoPessoaService {
 	public void delete(Integer id) {
 		find(id);
 		repo.delete(id);
-	}
-	
-	public void delete(Pessoa obj) {
-		repo.delete(obj.getContatos());
-	}
-	
-	
+	}	
 }
