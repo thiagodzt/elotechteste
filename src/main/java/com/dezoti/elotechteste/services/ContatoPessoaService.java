@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dezoti.elotechteste.domain.ContatoPessoa;
+import com.dezoti.elotechteste.domain.Pessoa;
 import com.dezoti.elotechteste.repositories.ContatoPessoaRepository;
 import com.dezoti.elotechteste.services.exceptions.ObjectNotFoundException;
 
@@ -18,7 +19,7 @@ public class ContatoPessoaService {
 	public ContatoPessoa find(Integer id) {
 		ContatoPessoa obj = repo.findOne(id);
 		if (obj==null) {
-			throw new ObjectNotFoundException("Objeto não encontrado! Id " + id + ", Tipo: " + ContatoPessoa.class.getName() + ".");
+			throw new ObjectNotFoundException("Objeto não encontrado! Id " + id + ", Tipo: " + ContatoPessoa.class.getName());
 		}
 		return obj;
 	}
@@ -41,4 +42,10 @@ public class ContatoPessoaService {
 		find(id);
 		repo.delete(id);
 	}
+	
+	public void delete(Pessoa obj) {
+		repo.delete(obj.getContatos());
+	}
+	
+	
 }

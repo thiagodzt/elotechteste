@@ -15,10 +15,13 @@ public class PessoaService {
 	@Autowired
 	private PessoaRepository repo;
 		
+	@Autowired
+	private ContatoPessoaService serviceContato;
+		
 	public Pessoa find(Integer id) {
 		Pessoa obj = repo.findOne(id);
 		if (obj==null) {
-			throw new ObjectNotFoundException("Objeto não encontrado! Id " + id + ", Tipo: " + Pessoa.class.getName() + ".");
+			throw new ObjectNotFoundException("Objeto não encontrado! Id " + id + ", Tipo: " + Pessoa.class.getName());
 		}
 		return obj;
 	}
@@ -38,7 +41,7 @@ public class PessoaService {
 	}
 	
 	public void delete(Integer id) {
-		find(id);
+		serviceContato.delete(find(id));
 		repo.delete(id);
 	}
 }
