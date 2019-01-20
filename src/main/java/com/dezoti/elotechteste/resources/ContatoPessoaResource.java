@@ -3,6 +3,8 @@
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +38,7 @@ public class ContatoPessoaResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert (@RequestBody ContatoPessoa obj) {
+	public ResponseEntity<Void> insert (@Valid @RequestBody ContatoPessoa obj) {
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -44,7 +46,7 @@ public class ContatoPessoaResource {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody ContatoPessoa obj, @PathVariable Integer id) {
+	public ResponseEntity<Void> update(@Valid @RequestBody ContatoPessoa obj, @PathVariable Integer id) {
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();			

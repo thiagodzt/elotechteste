@@ -11,6 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -22,11 +26,14 @@ public class Pessoa implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(length=80)
+	@NotEmpty(message="Campo Obrigatório")
+	@Length(min=5, max=80, message="Tamanho deve ser entre 5 e 80 caracteres")
 	private String nome;
 	
+	@Column(unique=true)
 	private Long rg;
 	
+	@Past
 	@JsonFormat(pattern="dd/MM/yyyy")
 	@Column(name="data_nascimento")
 	private Date dataNascimento;

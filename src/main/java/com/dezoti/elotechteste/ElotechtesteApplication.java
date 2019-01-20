@@ -35,10 +35,10 @@ public class ElotechtesteApplication implements CommandLineRunner{
 		Pessoa pessoa1 = new Pessoa(null, "Jose da Silva", new Long(95019374), format.parse("29/10/1987"));
 		Pessoa pessoa2 = new Pessoa(null, "Maria de Souza", new Long(105982148), format.parse("05/01/1970"));
 		
-		ContatoPessoa contato1 = new ContatoPessoa(null, "Thiago", pessoa1);
-		ContatoPessoa contato2 = new ContatoPessoa(null, "João", pessoa1);
-		ContatoPessoa contato3 = new ContatoPessoa(null, "Gilberto", pessoa1);
-		ContatoPessoa contato4 = new ContatoPessoa(null, "Fernanda", pessoa2);
+		ContatoPessoa contato1 = new ContatoPessoa(null, "Thiago Dezoti", pessoa1);
+		ContatoPessoa contato2 = new ContatoPessoa(null, "João da Rocha", pessoa1);
+		ContatoPessoa contato3 = new ContatoPessoa(null, "Gilberto Alves", pessoa1);
+		ContatoPessoa contato4 = new ContatoPessoa(null, "Fernanda Souza", pessoa2);
 		
 		pessoa1.getContatos().addAll(Arrays.asList(contato1, contato2, contato3));
 		pessoa2.getContatos().addAll(Arrays.asList(contato4));
