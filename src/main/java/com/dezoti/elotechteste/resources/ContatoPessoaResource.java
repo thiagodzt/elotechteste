@@ -23,8 +23,9 @@ public class ContatoPessoaResource {
 	private ContatoPessoaService service;
 
 	@RequestMapping(method=RequestMethod.GET)
-	public List<ContatoPessoa> list() {
-		return service.list();
+	public ResponseEntity<List<ContatoPessoa>> findAll() {
+		List<ContatoPessoa> list = service.findAll();
+		return ResponseEntity.ok().body(list);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)

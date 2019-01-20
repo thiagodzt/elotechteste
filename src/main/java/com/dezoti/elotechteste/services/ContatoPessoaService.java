@@ -24,7 +24,7 @@ public class ContatoPessoaService {
 		return obj;
 	}
 	
-	public List<ContatoPessoa> list() {
+	public List<ContatoPessoa> findAll() {
 		return repo.findAll();
 	}
 	
