@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dezoti.elotechteste.domain.Pessoa;
 import com.dezoti.elotechteste.repositories.PessoaRepository;
+import com.dezoti.elotechteste.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class PessoaService {
@@ -15,7 +16,11 @@ public class PessoaService {
 	private PessoaRepository repo;
 		
 	public Pessoa find(Integer id) {
-		return (Pessoa)repo.findOne(id);
+		Pessoa obj = repo.findOne(id);
+		if (obj==null) {
+			throw new ObjectNotFoundException("Objeto não encontrado! Id " + id + ", Tipo: " + Pessoa.class.getName() + ".");
+		}
+		return obj;
 	}
 	
 	public List<Pessoa> list() {

@@ -1,45 +1,41 @@
 package com.dezoti.elotechteste.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Pessoa implements Serializable {	
+public class ContatoPessoa implements Serializable {	
 	private static final long serialVersionUID = 1L;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="pessoa_id", nullable=false)
+	private Pessoa pessoa;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(length=80)
 	private String nome;
-	
-	private Long rg;
-	
-	@Column(name="data_nascimento")
-	private Date dataNascimento;
-	
-	@OneToMany(mappedBy="pessoa")
-	private List<ContatoPessoa> contatos = new ArrayList<>();
-	
-	public Pessoa() {
+
+	public ContatoPessoa() {
 	}
 
-	public Pessoa(Integer id, String nome, Long rg, Date dataNascimento) {
+	public ContatoPessoa(Integer id, String nome, Pessoa pessoa) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.rg = rg;
-		this.dataNascimento = dataNascimento;
+		this.pessoa = pessoa;
 	}
 	
 	public Integer getId() {
@@ -58,30 +54,14 @@ public class Pessoa implements Serializable {
 		this.nome = nome;
 	}
 
-	public Long getRg() {
-		return rg;
+	public Pessoa getPessoa() {
+		return pessoa;
 	}
 
-	public void setRg(Long rg) {
-		this.rg = rg;
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
-	public Date getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-
-	public List<ContatoPessoa> getContatos() {
-		return contatos;
-	}
-
-	public void setContatos(List<ContatoPessoa> contatos) {
-		this.contatos = contatos;
-	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -98,7 +78,7 @@ public class Pessoa implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pessoa other = (Pessoa) obj;
+		ContatoPessoa other = (ContatoPessoa) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -106,12 +86,6 @@ public class Pessoa implements Serializable {
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", rg=" + rg + ", dataNascimento=" + dataNascimento + "]";
-	}
-	
 	
 	
 	
