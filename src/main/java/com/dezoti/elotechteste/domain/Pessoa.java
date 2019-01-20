@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Pessoa implements Serializable {	
 	private static final long serialVersionUID = 1L;
@@ -28,6 +30,7 @@ public class Pessoa implements Serializable {
 	@Column(name="data_nascimento")
 	private Date dataNascimento;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy="pessoa")
 	private List<ContatoPessoa> contatos = new ArrayList<>();
 	
