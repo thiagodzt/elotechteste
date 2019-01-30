@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,7 +39,7 @@ public class Pessoa implements Serializable {
 	@Column(name="data_nascimento")
 	private Date dataNascimento;
 	
-	@OneToMany(mappedBy="pessoa")
+	@OneToMany(mappedBy="pessoa", cascade=CascadeType.ALL)
 	private List<ContatoPessoa> contatos = new ArrayList<>();
 	
 	public Pessoa() {

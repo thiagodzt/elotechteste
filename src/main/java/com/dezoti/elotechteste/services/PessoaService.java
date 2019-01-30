@@ -53,8 +53,7 @@ public class PessoaService {
 	}
 	
 	public void delete(Integer id) {
-		Pessoa obj = find(id);
-		repoContato.delete(obj.getContatos());
+		find(id);
 		repo.delete(id);
 	}
 }
